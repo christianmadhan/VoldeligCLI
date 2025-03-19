@@ -13,6 +13,7 @@ namespace VoldeligCLI
             initCommand.SetHandler(() =>
             {
                 Console.WriteLine("Initializing Voldelig project...");
+                MaconomyObjectGenerator.GenerateClassFiles();
                 // Add your initialization logic here
                 Console.WriteLine("Voldelig project initialized successfully!");
             });

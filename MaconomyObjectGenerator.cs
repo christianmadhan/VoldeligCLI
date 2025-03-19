@@ -10,8 +10,9 @@ namespace VoldeligCLI
 {
     public static class MaconomyObjectGenerator
     {
-        public static void GenerateClassFiles()
+        public static async Task GenerateClassFiles()
         {
+            string ROOT_DIRECTORY_NAME = "MaconomyModels";
             // Read appsettings.json
             string configJson;
             try
@@ -37,7 +38,7 @@ namespace VoldeligCLI
             }
 
             // Create output directory if it doesn't exist
-            Directory.CreateDirectory("Generated");
+            Directory.CreateDirectory(ROOT_DIRECTORY_NAME);
 
             // Process each container
             foreach (var container in containers.EnumerateObject())
@@ -66,10 +67,10 @@ namespace VoldeligCLI
                 string classContent = GenerateClassContent(containerName, keyFieldName, fieldList);
 
                 // Write to file
-                string fileName = $"Generated/{ToPascalCase(containerName)}.cs";
+                string fileName = $"{ROOT_DIRECTORY_NAME}/{ToPascalCase(containerName)}.cs";
                 File.WriteAllText(fileName, classContent);
 
-                Console.WriteLine($"Generated {fileName}");
+                Console.WriteLine($"{ROOT_DIRECTORY_NAME}/{fileName}");
             }
         }
 
